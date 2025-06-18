@@ -57,6 +57,7 @@ const ProductFinishedBox = () => {
             key={product.productId}
             id={product.productId}
             name={product.brandName}
+            status={product.status}
             categoryMain={product.categoryMain}
             categorySub={product.categorySub}
             image={product.imageUrl}

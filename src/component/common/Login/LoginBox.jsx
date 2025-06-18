@@ -18,19 +18,17 @@ function LoginBox({ isInspector }) {
   const [pw, setPw] = useState('');
   const [error, setError] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [fade, setFade] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-  const displayDuration = 10000;
-  const timer = setTimeout(() => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  }, displayDuration);
+    const displayDuration = 10000;
+    const timer = setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, displayDuration);
 
-  return () => clearTimeout(timer);
-}, [currentIndex]);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
 
-  // 로그인 처리
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -52,20 +50,25 @@ function LoginBox({ isInspector }) {
     }
   };
 
+  // ← 메인으로 돌아가기 클릭 핸들러
+  const handleGoBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginimg}>
-  <div className={styles.slideImageWrapper}>
-    {images.map((img, idx) => (
-      <img
-        key={idx}
-        src={img}
-        alt={`slide-${idx}`}
-        className={`${styles.slideImage} ${currentIndex === idx ? styles.show : ''}`}
-      />
-    ))}
-  </div>
-</div>
+        <div className={styles.slideImageWrapper}>
+          {images.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`slide-${idx}`}
+              className={`${styles.slideImage} ${currentIndex === idx ? styles.show : ''}`}
+            />
+          ))}
+        </div>
+      </div>
 
       <div className={styles.loginFormDiv}>
         <form
@@ -102,6 +105,10 @@ function LoginBox({ isInspector }) {
             >
               로그인
             </button>
+
+            <div className={styles.goBackText} onClick={handleGoBack}>
+              ← 돌아가기
+            </div>
           </div>
         </form>
       </div>
