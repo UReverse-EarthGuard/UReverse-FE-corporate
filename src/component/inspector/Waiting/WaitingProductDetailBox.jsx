@@ -150,7 +150,7 @@ const WaitingProductDetailBox = () => {
         />
       </SectionHeader>
 
-      <ProductInfoSection product={product} setModalImg={setModalImg} />
+      <ProductInfoSection product={product} setModalImg={setModalImg} showHumanResult={false}/>
 
       <InspectionForm
         form={form}
