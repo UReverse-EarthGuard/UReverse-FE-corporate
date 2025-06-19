@@ -9,10 +9,17 @@ const instance = axios.create({
 // 요청 인터셉터: accessToken 자동 헤더 추가
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+    // 로그인, 회원가입 등 특정 요청에는 Authorization 헤더를 추가하지 않음
+    const excludedPaths = ['/auth/login', '/auth/register'];
+    const isExcluded = excludedPaths.some((path) => config.url?.includes(path));
+
+    if (!isExcluded) {
+      const token = localStorage.getItem('accessToken');
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
     }
+
     return config;
   },
   (error) => Promise.reject(error)
