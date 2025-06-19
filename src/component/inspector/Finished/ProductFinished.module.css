@@ -48,11 +48,29 @@
   transition: transform 0.2s ease;
   background-color: #fafafa;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative; /* (선택사항) 필요하면 넣기 */
 }
 
 .productItem:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imageBox {
+  position: relative; /* 뱃지 위치 기준 */
+}
+
+.rejectBadge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 1;
 }
 
 .imageBox {

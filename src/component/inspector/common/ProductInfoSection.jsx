@@ -4,7 +4,7 @@ import AiInspectionResult from '../common/AiInspectionResult';
 import InspectionCriteria from '../common/InspectionCriteria';
 import HumanInspectionResult from './HumanInspectionResult';
 
-export default function ProductInfoSection({ product }) {
+export default function ProductInfoSection({ product, showHumanResult = true }) {
 
   return (
     <section>
@@ -12,7 +12,9 @@ export default function ProductInfoSection({ product }) {
       <ProductDetails product={product} />
       <AiInspectionResult ai={product.aiInspection} />
       <InspectionCriteria />
-      <HumanInspectionResult human={product.humanInspection} />
+      { showHumanResult && (
+        <HumanInspectionResult human={product.humanInspection} />
+      )}
     </section>
   );
 }

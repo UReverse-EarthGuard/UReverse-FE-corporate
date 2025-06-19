@@ -144,13 +144,9 @@ const WaitingProductDetailBox = () => {
   return (
     <div className={styles['detail-container']}>
       <SectionHeader title="검수 대기 상품 상세">
-        <LastSavedIndicator
-          lastSaved={lastSaved}
-          fallbackDate={product.aiInspection?.createdAt}
-        />
       </SectionHeader>
 
-      <ProductInfoSection product={product} setModalImg={setModalImg} />
+      <ProductInfoSection product={product} setModalImg={setModalImg} showHumanResult={false}/>
 
       <InspectionForm
         form={form}
