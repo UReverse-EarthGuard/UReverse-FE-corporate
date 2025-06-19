@@ -61,7 +61,7 @@ const ProductWaitingBox = () => {
             categorySub={product.categorySub}
             image={product.imageUrl}
             price={product.expectedPoint}
-            date={product.createdAt}
+            date={product.updatedAt}
           />
         ))}
       </div>

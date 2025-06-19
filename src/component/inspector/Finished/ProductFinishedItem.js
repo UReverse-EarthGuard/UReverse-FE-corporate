@@ -3,17 +3,25 @@ import { FaClock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductFinished.module.css';
 
-const ProductFinishedItem = ({ id, image, name, categoryMain, categorySub, price, date }) => {
+const ProductFinishedItem = ({ id, image, name, status, categoryMain, categorySub, price, date }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/inspector/finished/${id}`);
   };
- 
+
+  const isRejected = status === 'REJECT';
+  const productItemClass = isRejected
+    ? `${styles.productItem} ${styles.rejected}`
+    : styles.productItem;
+
   return (
-    <div className={styles.productItem} onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div className={productItemClass} onClick={handleClick} style={{ cursor: 'pointer' }}>
       <div className={styles.imageBox}>
         <img src={image} alt={name} className={styles.image} />
+          {status === 'REJECT' && (
+            <div className={styles.rejectBadge}>REJECT</div>
+          )}
       </div>
       <div className={styles.infoRow}>
         <span className={styles.name}>
@@ -31,4 +39,3 @@ const ProductFinishedItem = ({ id, image, name, categoryMain, categorySub, price
 };
 
 export default ProductFinishedItem;
-
